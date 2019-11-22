@@ -1,4 +1,26 @@
-const http = require('http')
+const path = require('path')
+const express = require('express')
+
+const app = new express()
+app.use(express.static('public'))
+
+app.get('/', (request, response) => {
+    response.sendFile(path.resolve(__dirname, 'index.html'))
+})
+
+app.get('/about', (request, response) => {
+    response.sendFile(path.resolve(__dirname, 'about.html'))
+})
+
+app.get('/contact', (request, response) => {
+    response.sendFile(path.resolve(__dirname, 'contact.html'))
+})
+
+app.listen(5000, () => {
+    console.log('App Lisitening on port 5000')
+})
+
+/*const http = require('http')
 const fs = require('fs')
 
 const aboutPage = fs.readFileSync('about.html')
@@ -20,4 +42,4 @@ const server = http.createServer((request, response) => {
     }
 })
 
-server.listen(5000)
+server.listen(5000)*/
